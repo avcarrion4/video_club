@@ -1,20 +1,20 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.2.2
--- http://www.phpmyadmin.net
+-- version 4.6.5.2
+-- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-04-2019 a las 17:37:45
--- Versión del servidor: 5.5.27
--- Versión de PHP: 5.4.7
+-- Tiempo de generación: 26-04-2019 a las 20:34:56
+-- Versión del servidor: 10.1.21-MariaDB
+-- Versión de PHP: 5.6.30
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Base de datos: `videoclub`
@@ -26,7 +26,7 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `detareg`
 --
 
-CREATE TABLE IF NOT EXISTS `detareg` (
+CREATE TABLE `detareg` (
   `idPrestamo` int(2) NOT NULL,
   `idVideo` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -39,6 +39,10 @@ INSERT INTO `detareg` (`idPrestamo`, `idVideo`) VALUES
 (2, 1),
 (5, 1),
 (6, 2),
+(10, 1),
+(2, 1),
+(5, 1),
+(6, 2),
 (10, 1);
 
 -- --------------------------------------------------------
@@ -47,13 +51,12 @@ INSERT INTO `detareg` (`idPrestamo`, `idVideo`) VALUES
 -- Estructura de tabla para la tabla `lock`
 --
 
-CREATE TABLE IF NOT EXISTS `lock` (
-  `id_lock` int(10) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `lock` (
+  `id_lock` int(10) NOT NULL,
   `nombre_usuario` varchar(50) NOT NULL,
   `entrada` varchar(50) NOT NULL,
-  `salida` varchar(50) NOT NULL,
-  PRIMARY KEY (`id_lock`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `salida` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -61,15 +64,14 @@ CREATE TABLE IF NOT EXISTS `lock` (
 -- Estructura de tabla para la tabla `membresia`
 --
 
-CREATE TABLE IF NOT EXISTS `membresia` (
-  `idMembresia` int(2) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `membresia` (
+  `idMembresia` int(2) NOT NULL,
   `tipo` varchar(10) NOT NULL,
   `descuento` int(2) NOT NULL,
   `fechaInicio` date NOT NULL,
   `fechaFin` date NOT NULL,
-  `estado` int(1) NOT NULL,
-  PRIMARY KEY (`idMembresia`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+  `estado` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `membresia`
@@ -86,8 +88,8 @@ INSERT INTO `membresia` (`idMembresia`, `tipo`, `descuento`, `fechaInicio`, `fec
 -- Estructura de tabla para la tabla `personas`
 --
 
-CREATE TABLE IF NOT EXISTS `personas` (
-  `idPersona` int(2) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `personas` (
+  `idPersona` int(2) NOT NULL,
   `cedula` int(10) NOT NULL,
   `nombres` varchar(50) NOT NULL,
   `direccion` varchar(50) NOT NULL,
@@ -96,9 +98,8 @@ CREATE TABLE IF NOT EXISTS `personas` (
   `clave` varchar(5) DEFAULT NULL,
   `rol` int(1) NOT NULL,
   `codigo` varchar(50) NOT NULL,
-  `idMembresia` int(2) NOT NULL,
-  PRIMARY KEY (`idPersona`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+  `idMembresia` int(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `personas`
@@ -117,16 +118,15 @@ INSERT INTO `personas` (`idPersona`, `cedula`, `nombres`, `direccion`, `correo`,
 -- Estructura de tabla para la tabla `registro`
 --
 
-CREATE TABLE IF NOT EXISTS `registro` (
-  `idPrestamo` int(2) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `registro` (
+  `idPrestamo` int(2) NOT NULL,
   `fregistro` date NOT NULL,
   `fdevolucion` date DEFAULT NULL,
   `idCliente` int(2) NOT NULL,
   `dias` int(1) NOT NULL,
   `tipo` int(1) NOT NULL,
-  `estado` int(1) NOT NULL,
-  PRIMARY KEY (`idPrestamo`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+  `estado` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `registro`
@@ -146,11 +146,31 @@ INSERT INTO `registro` (`idPrestamo`, `fregistro`, `fdevolucion`, `idCliente`, `
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `roles`
+--
+
+CREATE TABLE `roles` (
+  `idroles` int(11) NOT NULL,
+  `rolescol` varchar(45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `roles`
+--
+
+INSERT INTO `roles` (`idroles`, `rolescol`) VALUES
+(0, 'ADMINISTRADOR'),
+(1, 'VENDEDOR'),
+(2, 'CLIENTE');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `videos`
 --
 
-CREATE TABLE IF NOT EXISTS `videos` (
-  `idVideo` int(2) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `videos` (
+  `idVideo` int(2) NOT NULL,
   `titulo` varchar(50) NOT NULL,
   `director` varchar(50) NOT NULL,
   `genero` varchar(50) NOT NULL,
@@ -159,9 +179,8 @@ CREATE TABLE IF NOT EXISTS `videos` (
   `renta` int(2) NOT NULL,
   `venta` int(2) NOT NULL,
   `cantidad` int(2) NOT NULL,
-  `resenia` varchar(100) NOT NULL,
-  PRIMARY KEY (`idVideo`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+  `resenia` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `videos`
@@ -173,6 +192,86 @@ INSERT INTO `videos` (`idVideo`, `titulo`, `director`, `genero`, `actor`, `anio`
 (3, 'Ted', 'Director C', 'ACCION', 'Actor C', 2005, 10, 15, 13, 'Un oso que cobra vida.'),
 (4, 'Beso de la muerte', 'Jacson', 'CIENCIA FICCION', 'Vinicio', 1990, 20, 40, 3, 'Pelicula filmada en el año 1990'),
 (5, 'anaconda', 'asd', 'ACCION', 'asd', 1990, 1, 2, 4, '');
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `lock`
+--
+ALTER TABLE `lock`
+  ADD PRIMARY KEY (`id_lock`);
+
+--
+-- Indices de la tabla `membresia`
+--
+ALTER TABLE `membresia`
+  ADD PRIMARY KEY (`idMembresia`);
+
+--
+-- Indices de la tabla `personas`
+--
+ALTER TABLE `personas`
+  ADD PRIMARY KEY (`idPersona`),
+  ADD KEY `roles_idx` (`rol`);
+
+--
+-- Indices de la tabla `registro`
+--
+ALTER TABLE `registro`
+  ADD PRIMARY KEY (`idPrestamo`);
+
+--
+-- Indices de la tabla `roles`
+--
+ALTER TABLE `roles`
+  ADD PRIMARY KEY (`idroles`);
+
+--
+-- Indices de la tabla `videos`
+--
+ALTER TABLE `videos`
+  ADD PRIMARY KEY (`idVideo`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `lock`
+--
+ALTER TABLE `lock`
+  MODIFY `id_lock` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `membresia`
+--
+ALTER TABLE `membresia`
+  MODIFY `idMembresia` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT de la tabla `personas`
+--
+ALTER TABLE `personas`
+  MODIFY `idPersona` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT de la tabla `registro`
+--
+ALTER TABLE `registro`
+  MODIFY `idPrestamo` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+--
+-- AUTO_INCREMENT de la tabla `videos`
+--
+ALTER TABLE `videos`
+  MODIFY `idVideo` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `personas`
+--
+ALTER TABLE `personas`
+  ADD CONSTRAINT `roles` FOREIGN KEY (`rol`) REFERENCES `roles` (`idroles`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
