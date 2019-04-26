@@ -11,6 +11,8 @@ import Datos.Constantes;
 import Datos.Vendedor;
 import Logica.ManejoAcceso;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -149,6 +151,13 @@ public class Logeo extends javax.swing.JFrame {
 
     private void jButtoniNGRESOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtoniNGRESOActionPerformed
         // TODO add your handling code here:
+        Date now = new Date(System.currentTimeMillis());
+        SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
+        SimpleDateFormat hour = new SimpleDateFormat("HH:mm:ss");
+        String entrada=date.format(now)+"---"+hour.format(now);
+//        System.out.println(date.format(now)+hour.format(now));
+//        System.out.println(hour.format(now));
+        System.out.println(entrada);
         Object obj;
         if (numeroVeces < Parametro.getNumeroIntentos()) {
             try {
@@ -157,20 +166,23 @@ public class Logeo extends javax.swing.JFrame {
                 if (obj != null) {
                     switch (rol) {
                         case 0:
-                            PrincipalAdministrador.administrador=(Administrador)obj;
-                            PrincipalAdministrador princAdmin=new PrincipalAdministrador();
+                            PrincipalAdministrador.administrador = (Administrador) obj;
+                            PrincipalAdministrador.entrada=(String)entrada;
+                            PrincipalAdministrador princAdmin = new PrincipalAdministrador();
                             princAdmin.setVisible(true);
                             Logeo.this.dispose();
                             break;
                         case 1:
-                            PrincipalVendedor.vendedor=(Vendedor)obj;
-                            PrincipalVendedor princVend=new PrincipalVendedor();
+                            PrincipalVendedor.vendedor = (Vendedor) obj;
+                            PrincipalVendedor.entrada=(String)entrada;
+                            PrincipalVendedor princVend = new PrincipalVendedor();
                             princVend.setVisible(true);
                             Logeo.this.dispose();
                             break;
                         case 2:
-                            PrincipalCliente.cliente=(Cliente)obj;
-                            PrincipalCliente princCliente=new PrincipalCliente();
+                            PrincipalCliente.cliente = (Cliente) obj;
+                            PrincipalCliente.entrada=(String)entrada;
+                            PrincipalCliente princCliente = new PrincipalCliente();
                             princCliente.setVisible(true);
                             Logeo.this.dispose();
                             break;

@@ -14,6 +14,7 @@ import Datos.Cliente;
 public class PrincipalCliente extends javax.swing.JFrame {
 
     static Cliente cliente;
+    static String entrada;
     /**
      * Creates new form PrincipalCliente
      */
@@ -69,6 +70,11 @@ public class PrincipalCliente extends javax.swing.JFrame {
         jMenu3.add(jMenuItemReporteMateriales);
 
         jMenuItemSalir.setText("Salir");
+        jMenuItemSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemSalirActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItemSalir);
 
         jMenuBar1.add(jMenu3);
@@ -104,12 +110,17 @@ public class PrincipalCliente extends javax.swing.JFrame {
 
     private void jMenuItemReporteMaterialesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemReporteMaterialesActionPerformed
         // TODO add your handling code here:
-        JInternalFrameReporteVideos.tipo=2;
-        JInternalFrameReporteVideos repVideos= new JInternalFrameReporteVideos();
+        JInternalFrameReporteAccesos.tipo=2;
+        JInternalFrameReporteAccesos repVideos= new JInternalFrameReporteAccesos();
         jDesktopPane1.removeAll();
         jDesktopPane1.add(repVideos);
         repVideos.show();
     }//GEN-LAST:event_jMenuItemReporteMaterialesActionPerformed
+
+    private void jMenuItemSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSalirActionPerformed
+        // TODO add your handling code here:
+        PrincipalCliente.this.dispose();
+    }//GEN-LAST:event_jMenuItemSalirActionPerformed
 
     /**
      * @param args the command line arguments

@@ -7,10 +7,17 @@ package Logica;
 
 import Datos.Administrador;
 import Datos.Cliente;
+import Datos.ConsultaRegistro;
 import Datos.ConsultasAcceso;
+import Datos.Reg_Acc;
 import Datos.Vendedor;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -18,8 +25,41 @@ import java.sql.SQLException;
  */
 public class ManejoAcceso {
 
+    ConsultasAcceso consulta = new ConsultasAcceso();
+    ConsultaRegistro consulta_Reg = new ConsultaRegistro();
+
+    public ArrayList<Reg_Acc> CargarMaterialesTxt() {
+        ArrayList<Reg_Acc> listAcc = new ArrayList<>();
+        try {
+            
+            ResultSet rs = consulta_Reg.seleccionAccesos();
+            
+            while (rs.next()) {
+                Reg_Acc acc = new Reg_Acc(rs.getInt(1), rs.getString(2), rs.getString(3),
+                        rs.getString(4));
+                
+                listAcc.add(acc);
+            }
+
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ManejoVideo.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ManejoVideo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return listAcc;
+    }
+    
+    public void lock(String usuario, String entrada) throws ClassNotFoundException, SQLException{
+        Date now = new Date(System.currentTimeMillis());
+        SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
+        SimpleDateFormat hour = new SimpleDateFormat("HH:mm:ss");
+        String salida = date.format(now) + "---" + hour.format(now);
+        int val = consulta.insercion(usuario, entrada, salida);
+    }
+
     public Object ValidarCamposIngreso(String Usuario, String Clave, int rol) throws ClassNotFoundException, SQLException {
-        ConsultasAcceso consulta = new ConsultasAcceso();
+
         ResultSet rs = consulta.seleccion(Usuario, Clave, rol);
         Object obj = null;
         if (rs != null) {

@@ -14,6 +14,7 @@ import Datos.Vendedor;
 public class PrincipalVendedor extends javax.swing.JFrame {
 
     static Vendedor vendedor;
+    static String entrada;
 
     /**
      * Creates new form PrincipalVendedor
@@ -36,6 +37,7 @@ public class PrincipalVendedor extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenuItemRegistroPersonas = new javax.swing.JMenuItem();
         jMenuItemMembresia = new javax.swing.JMenuItem();
+        jMenuItemSalir = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItemRegistroPrestamos = new javax.swing.JMenuItem();
         jMenuItemReportePrestamos = new javax.swing.JMenuItem();
@@ -70,6 +72,14 @@ public class PrincipalVendedor extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jMenuItemMembresia);
+
+        jMenuItemSalir.setText("Salir");
+        jMenuItemSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemSalirActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItemSalir);
 
         jMenuBar1.add(jMenu1);
 
@@ -151,6 +161,11 @@ public class PrincipalVendedor extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jMenuItemReportePrestamosActionPerformed
 
+    private void jMenuItemSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSalirActionPerformed
+        // TODO add your handling code here:
+        PrincipalVendedor.this.dispose();
+    }//GEN-LAST:event_jMenuItemSalirActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -195,5 +210,6 @@ public class PrincipalVendedor extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemRegistroPersonas;
     private javax.swing.JMenuItem jMenuItemRegistroPrestamos;
     private javax.swing.JMenuItem jMenuItemReportePrestamos;
+    private javax.swing.JMenuItem jMenuItemSalir;
     // End of variables declaration//GEN-END:variables
 }

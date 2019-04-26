@@ -90,4 +90,14 @@ public class ConsultaRegistro {
         ResultSet rs = st.executeQuery(Sentencia);
         return rs;
     }
+    
+    public ResultSet seleccionAccesos() throws ClassNotFoundException, SQLException {
+        st = con.AbrirConexion().createStatement();
+        String sentencia;
+        sentencia = "SELECT * FROM `lock`;";
+        System.out.println(sentencia);
+        ResultSet rs = st.executeQuery(sentencia);
+        return rs;
+
+    }
 }

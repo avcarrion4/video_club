@@ -3,16 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Andy/Documents/NetBeansProjects/Videoclub2.0/src/Datos/Persona.java</file>
-            <file>file:/C:/Users/Andy/Documents/NetBeansProjects/Videoclub2.0/src/Datos/Administrador.java</file>
+            <file>file:/C:/Users/Andy/Documents/NetBeansProjects/Videoclub2.0/src/Logica/ManejoVideo.java</file>
+            <file>file:/C:/Users/Andy/Documents/NetBeansProjects/Videoclub2.0/src/Datos/ConsultaRegistro.java</file>
+            <file>file:/C:/Users/Andy/Documents/NetBeansProjects/Videoclub2.0/src/Datos/Registro.java</file>
+            <file>file:/C:/Users/Andy/Documents/NetBeansProjects/Videoclub2.0/src/Datos/Reg_Acc.java</file>
             <file>file:/C:/Users/Andy/Documents/NetBeansProjects/Videoclub2.0/src/Gui/PrincipalAdministrador.java</file>
-            <file>file:/C:/Users/Andy/Documents/NetBeansProjects/Videoclub2.0/src/Gui/JInternalFrameRegistroClientes.java</file>
-            <file>file:/C:/Users/Andy/Documents/NetBeansProjects/Videoclub2.0/src/Gui/JInternalFrameRegistroVendedor.java</file>
-            <file>file:/C:/Users/Andy/Documents/NetBeansProjects/Videoclub2.0/src/Gui/Logeo.java</file>
+            <file>file:/C:/Users/Andy/Documents/NetBeansProjects/Videoclub2.0/src/Datos/ConsultasAcceso.java</file>
+            <file>file:/C:/Users/Andy/Documents/NetBeansProjects/Videoclub2.0/src/Gui/JInternalFrameReporteAccesos.java</file>
             <file>file:/C:/Users/Andy/Documents/NetBeansProjects/Videoclub2.0/src/Logica/ManejoAcceso.java</file>
-            <file>file:/C:/Users/Andy/Documents/NetBeansProjects/Videoclub2.0/src/Gui/PrincipalCliente.java</file>
+            <file>file:/C:/Users/Andy/Documents/NetBeansProjects/Videoclub2.0/src/Datos/ConsultasVideos.java</file>
             <file>file:/C:/Users/Andy/Documents/NetBeansProjects/Videoclub2.0/src/Gui/JInternalFrameReporteVideos.java</file>
-            <file>file:/C:/Users/Andy/Documents/NetBeansProjects/Videoclub2.0/src/Datos/Cliente.java</file>
         </group>
     </open-files>
 </project-private>

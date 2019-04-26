@@ -6,6 +6,11 @@
 package Gui;
 
 import Datos.Administrador;
+import Logica.ManejoAcceso;
+import java.sql.SQLException;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -14,6 +19,9 @@ import Datos.Administrador;
 public class PrincipalAdministrador extends javax.swing.JFrame {
 
     static Administrador administrador;
+    static String entrada;
+    
+    ManejoAcceso manAcc = new ManejoAcceso();
 
     /**
      * Creates new form PrincipalAdministrador
@@ -37,6 +45,7 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
         jMenuItemRegistroMateriales = new javax.swing.JMenuItem();
         jMenuItemReporteMateriales = new javax.swing.JMenuItem();
         jMenuItemClientesUs = new javax.swing.JMenuItem();
+        jMenuItemAcceso = new javax.swing.JMenuItem();
         jMenuItemSalir = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -78,7 +87,20 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItemClientesUs);
 
+        jMenuItemAcceso.setText("Registro de Accesos");
+        jMenuItemAcceso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemAccesoActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItemAcceso);
+
         jMenuItemSalir.setText("Salir");
+        jMenuItemSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemSalirActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItemSalir);
 
         jMenuBar1.add(jMenu2);
@@ -128,6 +150,28 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
         usuario.show();
     }//GEN-LAST:event_jMenuItemClientesUsActionPerformed
 
+    private void jMenuItemSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSalirActionPerformed
+        try {
+            // TODO add your handling code here:
+            
+            manAcc.lock(administrador.getNombre(), entrada);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(PrincipalAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(PrincipalAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        PrincipalAdministrador.this.dispose();
+    }//GEN-LAST:event_jMenuItemSalirActionPerformed
+
+    private void jMenuItemAccesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAccesoActionPerformed
+        // TODO add your handling code here:
+        JInternalFrameReporteAccesos.tipo = 0;
+        JInternalFrameReporteAccesos repACC = new JInternalFrameReporteAccesos();
+        jDesktopPane1.removeAll();
+        jDesktopPane1.add(repACC);
+        repACC.show();
+    }//GEN-LAST:event_jMenuItemAccesoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -167,6 +211,7 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItemAcceso;
     private javax.swing.JMenuItem jMenuItemClientesUs;
     private javax.swing.JMenuItem jMenuItemRegistroMateriales;
     private javax.swing.JMenuItem jMenuItemReporteMateriales;

@@ -32,4 +32,15 @@ public class ConsultasAcceso {
 
     }
 
+    public int insercion(String titulo, String director, String genero)
+            throws ClassNotFoundException, SQLException {
+        int x = 0;
+        st = con.AbrirConexion().createStatement();
+        String sentencia;
+        sentencia = "INSERT INTO `lock` (`nombre_usuario`, `entrada`, `salida`)"
+                + "VALUES('"+titulo + "','" + director + "','" + genero+"');";
+        x = st.executeUpdate(sentencia);
+        return x;
+    }
+
 }
